@@ -1,8 +1,7 @@
 package lesson1;
 
-public class Cat implements CanRunning, CanJumping {
+public class Human implements CanRunning, CanJumping {
     final String name;
-    private int speedHeight;
     private int speedLength;
     private int maxHeight;
     private int maxLength;
@@ -10,9 +9,8 @@ public class Cat implements CanRunning, CanJumping {
 
     @Override
     public String toString() {
-        return "Cat{" +
+        return "Human {" +
                 "name='" + name + '\'' +
-                ", speedHeight=" + speedHeight +
                 ", speedLength=" + speedLength +
                 ", maxHeight=" + maxHeight +
                 ", maxLength=" + maxLength +
@@ -20,18 +18,17 @@ public class Cat implements CanRunning, CanJumping {
                 '}';
     }
 
-    public Cat(String name,
-               int speedHeight, int speedLength,
-               int maxHeight, int maxLength,
-               boolean status) {
+    public Human(String name,
+                 int speedLength,
+                 int maxHeight, int maxLength,
+                 boolean status) {
 
         this.name = name;
         this.statusCompetitor = status;
 
-        if (speedHeight < 0 || speedLength < 0 || maxHeight < 0 || maxLength < 0) {
+        if (speedLength < 0 || maxHeight < 0 || maxLength < 0) {
             System.out.println("Вы задали некорректные параметры");
         } else {
-            this.speedHeight = speedHeight;
             this.speedLength = speedLength;
             this.maxHeight = maxHeight;
             this.maxLength = maxLength;
@@ -43,25 +40,25 @@ public class Cat implements CanRunning, CanJumping {
         if (statusCompetitor) {
             if (roadRun.lengthRoadRun <= maxLength) {
                 timeToOvercome = roadRun.lengthRoadRun / speedLength;
-                System.out.println("Я - кот, пробежал " + roadRun.lengthRoadRun + " за "
+                System.out.println("Я - человек, пробежал " + roadRun.lengthRoadRun + " за "
                         + timeToOvercome);
             } else {
                 statusCompetitor = false;
-                System.out.println("Я - кот, я не могу пробежать " + roadRun.lengthRoadRun);
+                System.out.println("Я - человек, я не могу пробежать " + roadRun.lengthRoadRun);
             }
-        } else System.out.println("Кот не учавствует в преодалении препятствий.");
+        } else System.out.println("Человек не учавствует в преодалении препятствий.");
         return timeToOvercome;
     }
 
     public double jumping(WallForJump wallForJump) {
         if (statusCompetitor) {
             if (wallForJump.heightWall <= maxHeight) {
-                System.out.println("Я - кот, я перепрыгнул " + wallForJump.heightWall);
+                System.out.println("Я - человек, я перепрыгнул " + wallForJump.heightWall);
             } else {
                 statusCompetitor = false;
-                System.out.println("Я - кот, я не могу перепрыгнуть " + wallForJump.heightWall);
+                System.out.println("Я - человек, я не могу перепрыгнуть " + wallForJump.heightWall);
             }
-        } else System.out.println("Кот не учавствует в преодалении препятствий.");
+        } else System.out.println("Человек не учавствует в преодалении препятствий.");
         return 0;
     }
 }
