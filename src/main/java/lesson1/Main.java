@@ -4,14 +4,15 @@ public class Main {
     public static void main(String[] args) {
 
         Course[] courses = new Course[5];
+        Team[] teams = new Team[3];
 
-        Cat cat = new Cat("Barsic",
-                10, 100,
+        teams[0] = new Cat("Barsic",
+                100,
                 5, 500, true);
-        Human man = new Human("Max",
+        teams[1] = new Human("Max",
                 25,
                 2, 1000, true);
-        Robot robot = new Robot("Robocop",
+        teams[2] = new Robot("Robocop",
                 150,
                 1, 1000, true);
 
@@ -26,21 +27,12 @@ public class Main {
         int height2 = (int) (Math.random() * (4 - 1) + 1);
         courses[3] = new WallForJump(height2);
 
-
         for (int i = 0; i < 5; i++) {
-            if (courses[i] instanceof RoadRun)
-            ((RoadRun) courses[i]).getTimeToOvercomeRoadRun(cat);
-            else ((WallForJump) courses[i]).getTimeToOvercomeWall(cat);
-        }
-        for (int i = 0; i < 5; i++) {
-            if (courses[i] instanceof RoadRun)
-                ((RoadRun) courses[i]).getTimeToOvercomeRoadRun(man);
-            else ((WallForJump) courses[i]).getTimeToOvercomeWall(man);
-        }
-        for (int i = 0; i < 5; i++) {
-            if (courses[i] instanceof RoadRun)
-                ((RoadRun) courses[i]).getTimeToOvercomeRoadRun(robot);
-            else ((WallForJump) courses[i]).getTimeToOvercomeWall(robot);
+            for (int j = 0; j < 3; j++) {
+                if (courses[i] instanceof RoadRun)
+                    ((RoadRun) courses[i]).getTimeToOvercomeRoadRun((CanRunning) teams[j]);
+                else ((WallForJump) courses[i]).getTimeToOvercomeWall((CanJumping) teams[j]);
+            }
         }
     }
 }

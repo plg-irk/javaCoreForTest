@@ -1,6 +1,6 @@
 package lesson1;
 
-public class Human implements CanRunning, CanJumping {
+public class Human extends Team implements CanRunning, CanJumping {
     final String name;
     private int speedLength;
     private int maxHeight;
@@ -44,9 +44,9 @@ public class Human implements CanRunning, CanJumping {
                         + timeToOvercome);
             } else {
                 statusCompetitor = false;
-                System.out.println("Я - человек, я не могу пробежать " + roadRun.lengthRoadRun);
+                System.out.println(" Я - человек, я не могу пробежать " + roadRun.lengthRoadRun);
             }
-        } else System.out.println("Человек не учавствует в преодалении препятствий.");
+        } else System.out.println("  Человек не учавствует в преодалении препятствий.");
         return timeToOvercome;
     }
 
@@ -56,9 +56,9 @@ public class Human implements CanRunning, CanJumping {
                 System.out.println("Я - человек, я перепрыгнул " + wallForJump.heightWall);
             } else {
                 statusCompetitor = false;
-                System.out.println("Я - человек, я не могу перепрыгнуть " + wallForJump.heightWall);
+                System.out.println(" Я - человек, я не могу перепрыгнуть " + wallForJump.heightWall);
             }
-        } else System.out.println("Человек не учавствует в преодалении препятствий.");
+        } else System.out.println("  Человек не учавствует в преодалении препятствий.");
         return 0;
     }
 }

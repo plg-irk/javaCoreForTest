@@ -1,8 +1,7 @@
 package lesson1;
 
-public class Cat implements CanRunning, CanJumping {
+public class Cat extends Team implements CanRunning, CanJumping {
     final String name;
-    private int speedHeight;
     private int speedLength;
     private int maxHeight;
     private int maxLength;
@@ -12,7 +11,6 @@ public class Cat implements CanRunning, CanJumping {
     public String toString() {
         return "Cat{" +
                 "name='" + name + '\'' +
-                ", speedHeight=" + speedHeight +
                 ", speedLength=" + speedLength +
                 ", maxHeight=" + maxHeight +
                 ", maxLength=" + maxLength +
@@ -21,17 +19,16 @@ public class Cat implements CanRunning, CanJumping {
     }
 
     public Cat(String name,
-               int speedHeight, int speedLength,
+               int speedLength,
                int maxHeight, int maxLength,
                boolean status) {
 
         this.name = name;
         this.statusCompetitor = status;
 
-        if (speedHeight < 0 || speedLength < 0 || maxHeight < 0 || maxLength < 0) {
+        if (speedLength < 0 || maxHeight < 0 || maxLength < 0) {
             System.out.println("Вы задали некорректные параметры");
         } else {
-            this.speedHeight = speedHeight;
             this.speedLength = speedLength;
             this.maxHeight = maxHeight;
             this.maxLength = maxLength;
@@ -47,9 +44,9 @@ public class Cat implements CanRunning, CanJumping {
                         + timeToOvercome);
             } else {
                 statusCompetitor = false;
-                System.out.println("Я - кот, я не могу пробежать " + roadRun.lengthRoadRun);
+                System.out.println(" Я - кот, я не могу пробежать " + roadRun.lengthRoadRun);
             }
-        } else System.out.println("Кот не учавствует в преодалении препятствий.");
+        } else System.out.println("  Кот не учавствует в преодалении препятствий.");
         return timeToOvercome;
     }
 
@@ -59,9 +56,9 @@ public class Cat implements CanRunning, CanJumping {
                 System.out.println("Я - кот, я перепрыгнул " + wallForJump.heightWall);
             } else {
                 statusCompetitor = false;
-                System.out.println("Я - кот, я не могу перепрыгнуть " + wallForJump.heightWall);
+                System.out.println(" Я - кот, я не могу перепрыгнуть " + wallForJump.heightWall);
             }
-        } else System.out.println("Кот не учавствует в преодалении препятствий.");
+        } else System.out.println("  Кот не учавствует в преодалении препятствий.");
         return 0;
     }
 }
