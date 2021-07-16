@@ -1,4 +1,7 @@
 package lesson1;
 
-public class Course {
-}
+abstract class Course {
+
+    }
+
+

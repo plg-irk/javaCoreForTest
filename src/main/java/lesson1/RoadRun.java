@@ -1,6 +1,6 @@
 package lesson1;
 
-public class RoadRun {
+public class RoadRun extends Course{
     public double lengthRoadRun;
 
     public RoadRun(double lengthRoadRun) {
