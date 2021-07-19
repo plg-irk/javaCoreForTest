@@ -6,7 +6,6 @@ public class Main {
         CreatedArray arrays44 = new CreatedArray(4, 4);
         CreatedArray arrays45 = new CreatedArray(4, 5);
         CreatedArray arrays54 = new CreatedArray(5, 4);
-        CreatedArray arrays44Change = new CreatedArray(4, 4);
 
         arrays44.setIntArrays();
         arrays44.printArrays();
