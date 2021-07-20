@@ -11,19 +11,30 @@ public class Main {
         arrays44.printArrays();
         arrays44.sumOfElementsArrays();
 
-        arrays44.setIntArrays();
-        arrays44.changeElemArrays(1, 2, "a");
-        arrays44.printArrays();
-        arrays44.sumOfElementsArrays();
+        try {
+            arrays44.setIntArrays();
+            arrays44.changeElemArrays(1, 2, "a");
+            arrays44.printArrays();
+            arrays44.sumOfElementsArrays();
+        } catch (MyArrayDataException e) {
+            System.out.println("Ожидаемая ошибка");
+        }
 
-        arrays45.setIntArrays();
-        arrays45.printArrays();
-        arrays45.sumOfElementsArrays();
+        try {
+            arrays45.setIntArrays();
+            arrays45.printArrays();
+            arrays45.sumOfElementsArrays();
+        } catch (MyArraySizeException e) {
+            System.out.println("Ожидаемая ошибка");
+        }
 
-        arrays54.setIntArrays();
-        arrays54.printArrays();
-        arrays54.sumOfElementsArrays();
-
+        try {
+            arrays54.setIntArrays();
+            arrays54.printArrays();
+            arrays54.sumOfElementsArrays();
+        } catch (MyArraySizeException e) {
+            System.out.println("Ожидаемая ошибка");
+        }
     }
 }
 //1. Написать метод, на вход которому подается двумерный строковый массив

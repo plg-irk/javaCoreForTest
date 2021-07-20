@@ -38,7 +38,8 @@ public class CreatedArray {
     public void sumOfElementsArrays() throws MyArraySizeException {
         int result = 0;
         if (intArrays.length != 4 || intArrays[0].length != 4) {
-            throw new MyArraySizeException("Размер массива не равен 4х4");
+            System.out.println("Размер массива не равен 4х4");
+            throw new MyArraySizeException();
         }
         for (int i = 0; i < maxI; i++) {
             for (int j = 0; j < maxJ; j++) {
@@ -46,8 +47,9 @@ public class CreatedArray {
                     int num = Integer.parseInt(intArrays[i][j]);
                     result += num;
                 } catch (NumberFormatException e) {
-                    throw new MyArrayDataException("Ошибка преобразования" +
+                    System.out.println("Ошибка преобразования" +
                             " в строке " + (i + 1) + " столбца " + (j + 1));
+                    throw new MyArrayDataException();
                 }
             }
         }
