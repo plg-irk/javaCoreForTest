@@ -1,6 +1,6 @@
 package lesson1;
 
-public class Cat extends Team implements CanRunning, CanJumping {
+public class Human extends Team implements CanRunning, CanJumping {
     final String name;
     private int speedLength;
     private int maxHeight;
@@ -9,7 +9,7 @@ public class Cat extends Team implements CanRunning, CanJumping {
 
     @Override
     public String toString() {
-        return "Cat{" +
+        return "Human {" +
                 "name='" + name + '\'' +
                 ", speedLength=" + speedLength +
                 ", maxHeight=" + maxHeight +
@@ -18,10 +18,10 @@ public class Cat extends Team implements CanRunning, CanJumping {
                 '}';
     }
 
-    public Cat(String name,
-               int speedLength,
-               int maxHeight, int maxLength,
-               boolean status) {
+    public Human(String name,
+                 int speedLength,
+                 int maxHeight, int maxLength,
+                 boolean status) {
 
         this.name = name;
         this.statusCompetitor = status;
@@ -40,25 +40,25 @@ public class Cat extends Team implements CanRunning, CanJumping {
         if (statusCompetitor) {
             if (roadRun.lengthRoadRun <= maxLength) {
                 timeToOvercome = roadRun.lengthRoadRun / speedLength;
-                System.out.println("Я - кот, пробежал " + roadRun.lengthRoadRun + " за "
+                System.out.println("Я - человек, пробежал " + roadRun.lengthRoadRun + " за "
                         + timeToOvercome);
             } else {
                 statusCompetitor = false;
-                System.out.println(" Я - кот, я не могу пробежать " + roadRun.lengthRoadRun);
+                System.out.println(" Я - человек, я не могу пробежать " + roadRun.lengthRoadRun);
             }
-        } else System.out.println("  Кот не учавствует в преодалении препятствий.");
+        } else System.out.println("  Человек не учавствует в преодалении препятствий.");
         return timeToOvercome;
     }
 
     public double jumping(WallForJump wallForJump) {
         if (statusCompetitor) {
             if (wallForJump.heightWall <= maxHeight) {
-                System.out.println("Я - кот, я перепрыгнул " + wallForJump.heightWall);
+                System.out.println("Я - человек, я перепрыгнул " + wallForJump.heightWall);
             } else {
                 statusCompetitor = false;
-                System.out.println(" Я - кот, я не могу перепрыгнуть " + wallForJump.heightWall);
+                System.out.println(" Я - человек, я не могу перепрыгнуть " + wallForJump.heightWall);
             }
-        } else System.out.println("  Кот не учавствует в преодалении препятствий.");
+        } else System.out.println("  Человек не учавствует в преодалении препятствий.");
         return 0;
     }
 }
