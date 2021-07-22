@@ -4,8 +4,8 @@ public class Apple extends Fruit {
     static double weight;
     static String fruit;
 
-    public Apple(double weight) {
-        Apple.weight = weight;
+    public Apple() {
+        Apple.weight = 1.0;
         Apple.fruit = "apple";
     }
 }

@@ -6,27 +6,16 @@ public class BoxOfFruit<T> {
 
     public ArrayList<T> array;
 
-    public BoxOfFruit(ArrayList<T> array) {
-        this.array = array;
+    public BoxOfFruit() {
+        this.array = new ArrayList<>();
     }
 
-    @Override
-    public String toString() {
-        return "BoxOfFruit{" +
-                "array=" + array +
-                '}';
-    }
-
-    public ArrayList<T> getArray() {
-        return array;
-    }
-
-    public void setArray(ArrayList<T> array) {
-        this.array = array;
-    }
-
-    public void addFruitToBox(Fruit fruit) {
-        this.array.add((T) fruit);
+    public void addFruitToBox(T fruit) {
+        if (array.isEmpty() ||
+                array.get(0).getClass().getSimpleName().
+                        equals(fruit.getClass().getSimpleName()))
+            array.add(fruit);
+        else System.out.println("Нельзя добавить фрукт. Пересортировка");
     }
 
     public boolean compare(BoxOfFruit<?> box) {
@@ -38,4 +27,34 @@ public class BoxOfFruit<T> {
         }
         return result;
     }
+
+    public double getWeight() {
+        double result = 0;
+        int num = 0;
+        for (int i = 0; i < array.size(); i++) {
+            num += 1;
+        }
+        if (array.get(0).
+                getClass().getSimpleName().equals("Apple")) {
+            result = num * Apple.weight;
+        } else {
+            if (array.get(0).
+                    getClass().getSimpleName().equals("Orange")) {
+                result = num * Orange.weight;
+            } else System.out.println("Подсчитать вес коробки невозможно");
+        }
+        return result;
+    }
+
+    public void overNextBox(BoxOfFruit<T> box) {
+        if (box.array.isEmpty() ||
+                box.array.get(0).getClass().getSimpleName().
+                        equals(array.get(0).getClass().getSimpleName()))
+            for (int i = 0; i < array.size(); i++) {
+                box.addFruitToBox(array.get(i));
+            }
+        else System.out.println("Пересыпать не возможно");
+        array.clear();
+    }
+
 }

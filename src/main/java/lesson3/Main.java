@@ -1,29 +1,30 @@
 package lesson3;
 
-import java.util.ArrayList;
-
 public class Main {
 
     public static void main(String[] args) {
 
-        ArrayList<Apple> fruits1 = new ArrayList<>();
-        ArrayList<Orange> fruits2 = new ArrayList<>();
-        ArrayList<Fruit> fruits3= new ArrayList<>();
+        Apple apple = new Apple();
+        Orange orange = new Orange();
 
-        BoxOfFruit<Apple> box1 = new BoxOfFruit<>(fruits1);
-        BoxOfFruit<Orange> box2 = new BoxOfFruit<>(fruits2);
-        BoxOfFruit<Fruit> box3 = new BoxOfFruit<>(fruits3);
+        BoxOfFruit<Fruit> box1 = new BoxOfFruit<>();
+        BoxOfFruit<Fruit> box2 = new BoxOfFruit<>();
+        BoxOfFruit<Fruit> box3 = new BoxOfFruit<>();
+        BoxOfFruit<Fruit> box4 = new BoxOfFruit<>();
 
-        box1.array.add(new Apple(1.0));
-        box1.array.add(new Apple(1.0));
-        box1.array.add(new Apple(1.0));
+        box1.addFruitToBox(apple);
+        box1.addFruitToBox(apple);
+        box1.addFruitToBox(apple);
+        box1.addFruitToBox(apple);
+        box1.addFruitToBox(apple);
+        box1.addFruitToBox(apple);
 
-        box2.array.add(new Orange(1.5));
-        box2.array.add(new Orange(1.5));
+        box2.addFruitToBox(orange);
+        box2.addFruitToBox(orange);
 
-        box3.array.add(new Orange(1.5));
-        box3.array.add(new Orange(1.5));
-        box3.array.add(new Apple(1.5));
+        box3.addFruitToBox(orange);
+        box3.addFruitToBox(orange);
+        box3.addFruitToBox(apple);
 
         System.out.println("Результат сравнения коробок 1,1: " +
                 box1.compare(box1));
@@ -32,27 +33,21 @@ public class Main {
         System.out.println("Результат сравнения коробок 2,3: " +
                 box2.compare(box3));
 
-        System.out.println("Вес коробки box1 = " + getW(box1));
-        System.out.println("Вес коробки box2 = " + getW(box2));
-        System.out.println("Вес коробки box2 = " + getW(box3));
+        System.out.println("Вес коробки box1 = " + box1.getWeight());
+        System.out.println("Вес коробки box2 = " + box2.getWeight());
+        System.out.println("Вес коробки box3 = " + box3.getWeight());
+
+        box1.overNextBox(box2);
+
+        box1.overNextBox(box4);
+        System.out.println("В коробке 1 фруктов: " + box1.array.size());
+        System.out.println("В коробке 4 фруктов: " + box4.array.size());
+
+        box2.overNextBox(box3);
+        System.out.println("В коробке 2 фруктов: " + box2.array.size());
+        System.out.println("В коробке 3 фруктов: " + box3.array.size());
+
     }
 
-    public static double getW(BoxOfFruit<?> box) {
-        double result = 0;
-        int num = 0;
-        for (int i = 0; i < box.array.size(); i++) {
-            num += 1;
-        }
-        if (box.array.get(0).
-                getClass().getSimpleName().equals("Apple")) {
-            result = num * Apple.weight;
-        } else {
-            if (box.array.get(0).
-                    getClass().getSimpleName().equals("Orange")) {
-                result = num * Orange.weight;
-            } else System.out.println("Подсчитать вес коробки невозможно");
-        }
-        return result;
-    }
 }
 
