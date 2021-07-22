@@ -2,7 +2,7 @@ package lesson3;
 
 import java.util.ArrayList;
 
-public class BoxOfFruit<T extends Fruit> implements GetWeigth {
+public class BoxOfFruit<T> {
 
     public ArrayList<T> array;
 
@@ -17,15 +17,6 @@ public class BoxOfFruit<T extends Fruit> implements GetWeigth {
                 '}';
     }
 
-    @Override
-    public double getWeight(BoxOfFruit<? extends Fruit> box) {
-        double sum = 0.0;
-        for (int i = 0; i < box.array.size(); i++) {
-            sum += box.getArray().get(i).weight;
-        }
-        return sum;
-    }
-
     public ArrayList<T> getArray() {
         return array;
     }
@@ -34,17 +25,16 @@ public class BoxOfFruit<T extends Fruit> implements GetWeigth {
         this.array = array;
     }
 
-    public boolean compareWeight(BoxOfFruit<?> box) {
+    public void addFruitToBox(Fruit fruit) {
+        this.array.add((T) fruit);
+    }
+
+    public boolean compare(BoxOfFruit<?> box) {
         boolean result = false;
-        double weight1 = getWeight(this);
-        double weight2 = getWeight(box);
-        if (weight1 == weight2) {
-            result = true;
-            System.out.println("Коробки равны по весу");
-        } else {
-            if (weight1 <= weight2)
-                System.out.println("Вторая коробка тяжелее");
-            else System.out.println("Вторая коробка легче");
+        if (array.size() == box.array.size()) {
+            if (array.get(0).getClass().getSimpleName().
+                    equals(box.array.get(0).getClass().getSimpleName()))
+                result = true;
         }
         return result;
     }

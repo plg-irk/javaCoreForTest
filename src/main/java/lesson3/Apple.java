@@ -1,15 +1,11 @@
 package lesson3;
 
 public class Apple extends Fruit {
+    static double weight;
+    static String fruit;
 
     public Apple(double weight) {
-        super(weight);
-    }
-
-    @Override
-    public String toString() {
-        return "Apple{" +
-                "weight=" + weight +
-                '}';
+        Apple.weight = weight;
+        Apple.fruit = "apple";
     }
 }
