@@ -18,6 +18,7 @@ public class BoxOfFruit<T> {
         else System.out.println("Нельзя добавить фрукт. Пересортировка");
     }
 
+
     public boolean compare(BoxOfFruit<?> box) {
         boolean result = false;
         if (array.size() == box.array.size()) {
@@ -49,12 +50,12 @@ public class BoxOfFruit<T> {
     public void overNextBox(BoxOfFruit<T> box) {
         if (box.array.isEmpty() ||
                 box.array.get(0).getClass().getSimpleName().
-                        equals(array.get(0).getClass().getSimpleName()))
-            for (int i = 0; i < array.size(); i++) {
+                        equals(array.get(0).getClass().getSimpleName())){
+            for (int i = 0; i < array.size(); i++)
                 box.addFruitToBox(array.get(i));
-            }
-        else System.out.println("Пересыпать не возможно");
-        array.clear();
+            array.clear();
+    }else System.out.println("Пересыпать невозможно");
+
     }
 
 }

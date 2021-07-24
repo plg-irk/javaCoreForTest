@@ -21,7 +21,7 @@ public class CrossArray<T> {
             T element = array[j];
             array[j] = array[i];
             array[i] = element;
-        } else System.out.println("Перестановка не возможна." +
+        } else System.out.println("Перестановка невозможна." +
                 " Выбранные значения выходят за пределы массива");
     }
 

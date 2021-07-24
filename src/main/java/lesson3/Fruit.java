@@ -1,4 +1,5 @@
 package lesson3;
 
-public class Fruit {
+public abstract class Fruit {
+
 }
