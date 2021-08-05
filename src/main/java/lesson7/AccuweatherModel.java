@@ -8,7 +8,6 @@ import okhttp3.Request;
 import okhttp3.Response;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 public class AccuweatherModel implements WeatherModel {
     //http://dataservice.accuweather.com/forecasts/v1/daily/1day/349727
@@ -107,8 +106,8 @@ public class AccuweatherModel implements WeatherModel {
 
         Response response = okHttpClient.newCall(request).execute();
         String responseString = response.body().string();
-
         String cityKey = objectMapper.readTree(responseString).get(0).at("/Key").asText();
+        System.out.println("Для этого города нет прогноза погоды");
         return cityKey;
     }
 

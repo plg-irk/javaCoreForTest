@@ -27,6 +27,8 @@ public class UserInterfaceView {
                     controller.getWeather(command, city);
                 } catch (IOException e) {
                     e.printStackTrace();
+                } catch (NullPointerException e) {
+                    System.out.println("Для этого города нет прогноза погоды");
                 }
             } else System.out.println("Вы не правильно выбрали период для прогноза погоды");
         }
