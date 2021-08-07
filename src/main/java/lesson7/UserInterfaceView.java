@@ -22,7 +22,6 @@ public class UserInterfaceView {
 
             //TODO* Сделать метод валидации пользовательского ввода
             if (command.equals("1") || command.equals("5")) {
-                if (command.equals("0")) break;
                 try {
                     controller.getWeather(command, city);
                 } catch (IOException e) {
@@ -30,7 +29,8 @@ public class UserInterfaceView {
                 } catch (NullPointerException e) {
                     System.out.println("Для этого города " + city + " нет прогноза погоды");
                 }
-            } else System.out.println("Вы не правильно выбрали период для прогноза погоды");
+            } else if (command.equals("0")) break;
+            else System.out.println("Вы не правильно выбрали период для прогноза погоды");
         }
     }
 }
