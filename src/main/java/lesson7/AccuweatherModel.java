@@ -2,12 +2,14 @@ package lesson7;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import lesson7.entity.Weather;
 import okhttp3.HttpUrl;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 public class AccuweatherModel implements WeatherModel {
     //http://dataservice.accuweather.com/forecasts/v1/daily/1day/349727
@@ -54,7 +56,12 @@ public class AccuweatherModel implements WeatherModel {
                 String weatherResponse = oneDayForecastResponse.body().string();
                 //TODO: сделать человекочитаемый вывод погоды. Выбрать параметры для вывода на свое усмотрение
                 System.out.println(selectedCity + " прогноз погоды:");
-                printWeather(weatherResponse, 0);
+                try {
+                    printWeather(selectedCity, weatherResponse, 0);
+                } catch (SQLException throwables) {
+                    throwables.printStackTrace();
+                }
+
                 break;
             case FIVE_DAYS:
                 HttpUrl httpUrl5 = new HttpUrl.Builder()
@@ -78,8 +85,13 @@ public class AccuweatherModel implements WeatherModel {
                 String weatherResponse5 = fiveDayForecastResponse.body().string();
                 //TODO*: реализовать вывод погоды на 5 дней
                 System.out.println(selectedCity + " прогноз погоды:");
-                for (int i = 0; i < 5; i++)
-                    printWeather(weatherResponse5, i);
+                for (int i = 0; i < 5; i++) {
+                    try {
+                        printWeather(selectedCity, weatherResponse5, i);
+                    } catch (SQLException throwables) {
+                        throwables.printStackTrace();
+                    }
+                }
                 break;
         }
     }
@@ -110,7 +122,7 @@ public class AccuweatherModel implements WeatherModel {
         return cityKey;
     }
 
-    public void printWeather(String jsonString, int n) throws JsonProcessingException {
+    public void printWeather(String city, String jsonString, int n) throws JsonProcessingException, SQLException {
         String date = objectMapper.readTree(jsonString)
                 .at("/DailyForecasts")
                 .get(n)
@@ -148,5 +160,8 @@ public class AccuweatherModel implements WeatherModel {
                 "Днем: " + dayIcon + "\n" +
                 "Ночью: " + nightIcon);
         System.out.println();
+        DataBaseRepository dataBaseRepository = new DataBaseRepository();
+        Weather weather = new Weather(city, date, tempMax, tempMin, dayIcon, nightIcon, n + 1);
+        dataBaseRepository.saveWeatherToBase(weather);
     }
 }
