@@ -28,17 +28,27 @@ public class DataBaseRepository {
         saveWeather.setString(5, weather.getDayIcon());
         saveWeather.setString(6, weather.getNightIcon());
         saveWeather.setInt(7, weather.getId());
-        System.out.println(saveWeather);
         saveWeather.executeUpdate();
         connection.close();
     }
 
-    public void getWeatherFromBase() throws SQLException {
+    public void getWeatherFromBase(int n) throws SQLException {
         Connection connection = DriverManager.getConnection(DB_PATH);
-        Statement statement = connection.createStatement();
-        ResultSet rs = statement.executeQuery("select * from weatherToCity");
-        System.out.println(rs.getString("city"));
+        PreparedStatement preparedStatement = connection.prepareStatement("select * from weatherToCity where id = ?");
+        preparedStatement.setInt(1, n);
+        preparedStatement.execute();
+        ResultSet rs = preparedStatement.getResultSet();
+        System.out.println("В городе " +
+                rs.getString("city") + ":");
+        System.out.println("На " + rs.getString("localDay"));
+        System.out.println("Максимальная температура: " +
+                rs.getString("temperatureMax"));
+        System.out.println("Минимальная температура: " +
+                rs.getString("temperatureMin"));
+        System.out.println("Днем: " +
+                rs.getString("dayIcon"));
+        System.out.println("Ночью: " +
+                rs.getString("nightIcon"));
         connection.close();
     }
-
 }

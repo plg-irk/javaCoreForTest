@@ -21,14 +21,17 @@ public class UserInterfaceView {
 
             String command = scanner.nextLine();
 
-            //TODO* Сделать метод валидации пользовательского ввода
             if (command.equals("1") || command.equals("5")) {
 
                 try {
                     controller.getWeather(command, city);
                     DataBaseRepository db = new DataBaseRepository();
                     try {
-                        db.getWeatherFromBase();
+                        if (command.equals("1"))
+                        db.getWeatherFromBase(1);
+                        else for (int i = 1; i < 6; i++) {
+                            db.getWeatherFromBase(i);
+                        }
                     } catch (SQLException throwables) {
                         throwables.printStackTrace();
                     }
