@@ -1,7 +1,6 @@
 package lesson7;
 
 import java.io.IOException;
-import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Scanner;
 
@@ -15,9 +14,9 @@ public class UserInterfaceView {
             System.out.println("Введите название города: ");
             String city = scanner.nextLine();
 
-            System.out.println("Введите 1 для получения погоды на сегодня;" +
-                    "Введите 5 для прогноза на 5 дней;" +
-                    " Для выхода введите 0:");
+            System.out.println("Введите 1 для получения погоды на сегодня; " +
+                    "Введите 5 для прогноза на пять дней; " +
+                    "Для выхода введите 0:");
 
             String command = scanner.nextLine();
 
@@ -38,7 +37,7 @@ public class UserInterfaceView {
                 } catch (IOException e) {
                     e.printStackTrace();
                 } catch (NullPointerException e) {
-                    System.out.println("Для этого города " + city + " нет прогноза погоды");
+                    System.out.println("Для города " + city + " нет прогноза погоды");
                 }
             } else if (command.equals("0")) break;
             else

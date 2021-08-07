@@ -17,9 +17,11 @@ public class SqlExamples {
             String updateWeather = "update weather set city= ?, localDay= ?, temperatureMax=?," +
                     "    temperatureMin = ?, dayIcon = ?, nightIcon = ? where id = ?";
 
+            String date = "2021-08-11T07:00:00+08:00";
+            date = date.split("T")[0];
             PreparedStatement saveWeather = connection.prepareStatement(updateWeather);
             saveWeather.setString(1, "CityEx");
-            saveWeather.setString(2, "01.01.2020");
+            saveWeather.setString(2, date);
             saveWeather.setFloat(3, (float) 22.2);
             saveWeather.setFloat(4, (float) -2.2);
             saveWeather.setString(5, "dayEx");

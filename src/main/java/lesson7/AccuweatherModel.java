@@ -12,7 +12,6 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 public class AccuweatherModel implements WeatherModel {
-    //http://dataservice.accuweather.com/forecasts/v1/daily/1day/349727
     private static final String PROTOCOL = "https";
     private static final String BASE_HOST = "dataservice.accuweather.com";
     private static final String FORECASTS = "forecasts";
@@ -54,8 +53,6 @@ public class AccuweatherModel implements WeatherModel {
 
                 Response oneDayForecastResponse = okHttpClient.newCall(request).execute();
                 String weatherResponse = oneDayForecastResponse.body().string();
-                //TODO: сделать человекочитаемый вывод погоды. Выбрать параметры для вывода на свое усмотрение
-                System.out.println(selectedCity + " прогноз погоды:");
                 try {
                     printWeather(selectedCity, weatherResponse, 0);
                 } catch (SQLException throwables) {
@@ -83,8 +80,7 @@ public class AccuweatherModel implements WeatherModel {
 
                 Response fiveDayForecastResponse = okHttpClient.newCall(request5).execute();
                 String weatherResponse5 = fiveDayForecastResponse.body().string();
-                //TODO*: реализовать вывод погоды на 5 дней
-                System.out.println(selectedCity + " прогноз погоды:");
+
                 for (int i = 0; i < 5; i++) {
                     try {
                         printWeather(selectedCity, weatherResponse5, i);
@@ -97,7 +93,6 @@ public class AccuweatherModel implements WeatherModel {
     }
 
     private String detectCityKey(String selectCity) throws IOException {
-        //http://dataservice.accuweather.com/locations/v1/cities/autocomplete
         HttpUrl httpUrl = new HttpUrl.Builder()
                 .scheme(PROTOCOL)
                 .host(BASE_HOST)
@@ -128,6 +123,7 @@ public class AccuweatherModel implements WeatherModel {
                 .get(n)
                 .at("/Date")
                 .asText();
+        date = date.split("T")[0];
         String tempMin = objectMapper.readTree(jsonString)
                 .at("/DailyForecasts")
                 .get(n)
@@ -154,12 +150,6 @@ public class AccuweatherModel implements WeatherModel {
                 .at("/Night")
                 .at("/IconPhrase")
                 .asText();
-        System.out.println("На: " + date + "\n" +
-                "Максимальная температура: " + tempMax + "\n" +
-                "Минимальная температура: " + tempMin + "\n" +
-                "Днем: " + dayIcon + "\n" +
-                "Ночью: " + nightIcon);
-        System.out.println();
         DataBaseRepository dataBaseRepository = new DataBaseRepository();
         Weather weather = new Weather(city, date, tempMax, tempMin, dayIcon, nightIcon, n + 1);
         dataBaseRepository.saveWeatherToBase(weather);
