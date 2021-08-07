@@ -27,7 +27,7 @@ public class UserInterfaceView {
                 } catch (IOException e) {
                     e.printStackTrace();
                 } catch (NullPointerException e) {
-                    System.out.println("Для этого города " + city + " нет прогноза погоды");
+                    System.out.println("Для города " + city + " нет прогноза погоды");
                 }
             } else if (command.equals("0")) break;
             else System.out.println("Вы не правильно выбрали период для прогноза погоды");
