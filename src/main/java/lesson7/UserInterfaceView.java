@@ -21,7 +21,6 @@ public class UserInterfaceView {
             String command = scanner.nextLine();
 
             if (command.equals("1") || command.equals("5")) {
-
                 try {
                     controller.getWeather(command, city);
                     DataBaseRepository db = new DataBaseRepository();
